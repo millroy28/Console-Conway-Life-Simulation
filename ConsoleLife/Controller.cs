@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -50,7 +51,14 @@ namespace ConsoleLife
             int generation = 0;
             int neighbors = 0;
             int listPosition = 0;
-            
+            int population = 0;
+            float pollutionTotal = 0;
+            float averageCellPollution = 0;
+            int fieldCount = field.Count;
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(3, RowEnd + 1);
+            Console.Write($"Generation:\tPopulation:\tAverage Pollution");
+            Console.ResetColor();
             while (generation <= Generations)
             {
                 for (int row = 1; row<=RowEnd; row++)
@@ -63,24 +71,47 @@ namespace ConsoleLife
                         if (field[listPosition].IsAlive)
                         {
                             Console.Write("█");
-                            field[listPosition].Pollution += 4;    //Adds polution to each live cell
+                            field[listPosition].Pollution += 5;    //Adds polution to each live cell
+                            population++;
                         }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Gray;
                             Console.Write("░");
                             Console.ResetColor();
-                            field[listPosition].Pollution += 1;    //Removes polution to each vacant cell
+                            if (field[listPosition].Pollution > 1)
+                            {
+                                field[listPosition].Pollution -= 1;    //Removes polution to each vacant cell
+                            }
                         }
 
                         neighbors = NeighborCount(listPosition, field);
                         field[listPosition].IsAlive = field[listPosition].GetLifeStatus(neighbors);
 
-                        Console.SetCursorPosition(3, RowEnd + 1);
-                        Console.Write($"Generation: {generation}");
                     }
                 }
 
+                foreach(Cell cell in field)
+                {
+                    pollutionTotal += cell.Pollution;
+                    averageCellPollution = pollutionTotal / fieldCount;                    
+                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.SetCursorPosition(3, RowEnd + 2);
+                Console.Write(generation);
+                Console.SetCursorPosition(20, RowEnd + 2);
+                Console.Write("         ");
+                Console.SetCursorPosition(20, RowEnd + 2);
+                Console.Write(population);
+                Console.SetCursorPosition(35, RowEnd + 2);
+                Console.Write("              ");
+                Console.SetCursorPosition(35, RowEnd + 2);
+                Console.Write(averageCellPollution);
+                Console.ResetColor();
+
+                averageCellPollution = 0;
+                pollutionTotal = 0;
+                population = 0;
                 generation++;
             }
             

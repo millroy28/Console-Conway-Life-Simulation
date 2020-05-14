@@ -1,5 +1,6 @@
 ﻿ using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace ConsoleLife
@@ -34,24 +35,40 @@ namespace ConsoleLife
                 if (!IsAlive && neighbors == 3)
                 {
                     //POLLUTION EFFECT As pollution in cell rises, it will be less likely for a cell to "get born"
-                    if (randIntGen.Next(1, 100000) < Pollution)
+                    if (randIntGen.Next(1, 10000) > Pollution)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                    return false;
+                    }
+                }
+                else if (IsAlive && neighbors < 2)
+                {
+                    //POLLUTION EFFECT As pollution in cell rises, it will be more likely for a cell to spontaneously die
+                    if (randIntGen.Next(1, 10000) > Pollution)
                     {
                         return false;
                     }
                     else
                     {
-                    return true;
+                        return true;
                     }
-                }
-                else if (IsAlive && neighbors < 2)
-                {
-                    return false;
                 }
                 else if (IsAlive && neighbors > 3)
                 {
-                    return false;
+                    //POLLUTION EFFECT As pollution in cell rises, it will be less likely for a cell to "get born"
+                    if (randIntGen.Next(1, 10000) > Pollution)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
-                else
+                else if (IsAlive)
                 {
                     return true;
                 }
