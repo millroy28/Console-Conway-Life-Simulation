@@ -61,36 +61,39 @@ namespace ConsoleLife
             Console.ResetColor();
             while (generation <= Generations)
             {
+
                 for (int row = 1; row<=RowEnd; row++)
                 {
                     for (int col = 1; col<=ColumnEnd; col++)
                     {
-                        //DISPLAY Iteration formula: col + row-1*ColumnEnd -1 (to 0 index)
-                        listPosition = col + ((row - 1) * ColumnEnd) - 1;
-                        Console.SetCursorPosition(col, row);
-                        if (field[listPosition].IsAlive)
-                        {
-                            //Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write("█");
-                            //Console.ResetColor();
-                            field[listPosition].Pollution += 5;    //Adds polution to each live cell
-                            population++;
-                        }
-                        else
-                        {
-                            //Console.ForegroundColor = ConsoleColor.Gray;
-                            //Console.BackgroundColor = ConsoleColor.DarkGreen;
-                            Console.Write("░");
-                            //Console.ResetColor();
-                            if (field[listPosition].Pollution > 1)
-                            {
-                                field[listPosition].Pollution -= 1;    //Removes polution to each vacant cell
-                            }
-                        }
-
+                        bool prevAlive = field[listPosition].IsAlive;
                         neighbors = NeighborCount(listPosition, field);
                         field[listPosition].IsAlive = field[listPosition].GetLifeStatus(neighbors);
-
+                        //DISPLAY Iteration formula: col + row-1*ColumnEnd -1 (to 0 index)
+                        if(prevAlive != field[listPosition].IsAlive)
+                        {
+                            Console.SetCursorPosition(col, row);
+                            if (field[listPosition].IsAlive)
+                            {
+                                //Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.Write("█");
+                                //Console.ResetColor();
+                                field[listPosition].Pollution += 5;    //Adds polution to each live cell
+                                population++;
+                            }
+                            else
+                            {
+                                //Console.ForegroundColor = ConsoleColor.Gray;
+                                //Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                Console.Write("░");
+                                //Console.ResetColor();
+                                if (field[listPosition].Pollution > 1)
+                                {
+                                    field[listPosition].Pollution -= 1;    //Removes polution to each vacant cell
+                                }
+                            }
+                        }
+                        listPosition = col + ((row - 1) * ColumnEnd) - 1;
                     }
                 }
 

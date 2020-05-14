@@ -10,8 +10,8 @@ namespace ConsoleLife
 
         static void Main(string[] args)
         {
-            Console.SetWindowSize(147,40);
-            Controller run = new Controller(145,35,100000);
+            Console.SetWindowSize(100,40);
+            Controller run = new Controller(98,37,100000);
             run.StartLife();
             
             
