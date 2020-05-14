@@ -1,0 +1,13 @@
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\bin\Debug\netcoreapp3.1\ConsoleLife.exe
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\bin\Debug\netcoreapp3.1\ConsoleLife.deps.json
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\bin\Debug\netcoreapp3.1\ConsoleLife.runtimeconfig.json
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\bin\Debug\netcoreapp3.1\ConsoleLife.runtimeconfig.dev.json
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\bin\Debug\netcoreapp3.1\ConsoleLife.dll
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\bin\Debug\netcoreapp3.1\ConsoleLife.pdb
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\obj\Debug\netcoreapp3.1\ConsoleLife.csprojAssemblyReference.cache
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\obj\Debug\netcoreapp3.1\ConsoleLife.csproj.CoreCompileInputs.cache
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\obj\Debug\netcoreapp3.1\ConsoleLife.AssemblyInfoInputs.cache
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\obj\Debug\netcoreapp3.1\ConsoleLife.AssemblyInfo.cs
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\obj\Debug\netcoreapp3.1\ConsoleLife.dll
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\obj\Debug\netcoreapp3.1\ConsoleLife.pdb
+C:\Users\millr\source\repos\ConsoleLife\ConsoleLife\obj\Debug\netcoreapp3.1\ConsoleLife.genruntimeconfig.cache
