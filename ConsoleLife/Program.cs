@@ -10,7 +10,7 @@ namespace ConsoleLife
 
         static void Main(string[] args)
         {
-            Controller run = new Controller(1000);
+            Controller run = new Controller(90,40,1000);
             run.StartLife();
             
             

@@ -22,8 +22,8 @@ namespace ConsoleLife
             if(neighbors < 2)
             {
                 //SPONTANEOUS GENERATION  to do: move above or into a function above to return status
-                int spontaneousGenerationThreshold = 5;
-                if (randIntGen.Next(1, 1000)< spontaneousGenerationThreshold)
+                int spontaneousGenerationThreshold = 20;
+                if (randIntGen.Next(1, 10000)< spontaneousGenerationThreshold)
                 {
                     return true;
                 }

@@ -63,11 +63,14 @@ namespace ConsoleLife
                         if (field[listPosition].IsAlive)
                         {
                             Console.Write("█");
-                            field[listPosition].Pollution++;    //Adds polution to each live cell
+                            field[listPosition].Pollution += 4;    //Adds polution to each live cell
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Gray;
                             Console.Write("░");
+                            Console.ResetColor();
+                            field[listPosition].Pollution += 1;    //Removes polution to each vacant cell
                         }
 
                         neighbors = NeighborCount(listPosition, field);
@@ -90,46 +93,35 @@ namespace ConsoleLife
             //upper left, center, right
             for (int h = -1; h <= 1; h++)
             {
-                try //present to account for border. when out of range (top/bottom row) does not add to neighbors
+                 if(listPosition + h - ColumnEnd >= 0)
                 {
                     if(field[listPosition + h - ColumnEnd].IsAlive)
                     {
                         neighbors++;
                     }
                 }
-                catch 
-                {
-                    
-                }
             }
             //same row, left, right
             for (int h = -1; h <= 1; h += 2)
             {
-                try
+                 if(listPosition + h >= 0 && listPosition + h < RowEnd * ColumnEnd)
                 {
                     if (field[listPosition + h].IsAlive)
                     {
                         neighbors++;
                     }
                 }
-                catch
-                {
-
-                }
+               
             }
             //lower left, center, right
             for (int h = -1; h <= 1; h++)
             {
-                try
-                {
+                 if(listPosition + h + ColumnEnd < RowEnd * ColumnEnd)
                     if (field[listPosition + h + ColumnEnd].IsAlive)
                     {
                         neighbors++;
                     }
-                } catch
-                {
-
-                }
+               
             }
             return neighbors;
         }
