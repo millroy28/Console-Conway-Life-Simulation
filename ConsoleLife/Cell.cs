@@ -10,10 +10,13 @@ namespace ConsoleLife
         public bool IsAlive { get; set; }
         public int Pollution { get; set; }
 
+        public int PollutionDenom { get; set; }
+
         public Cell()
         {
             IsAlive = false;
             Pollution = 0;
+            PollutionDenom = 10000; //Change to adjust range of random number generation for pollution effects
         }
 
         public bool GetLifeStatus(int neighbors)
@@ -24,7 +27,7 @@ namespace ConsoleLife
             {
                 //SPONTANEOUS GENERATION  to do: move above or into a function above to return status
                 int spontaneousGenerationThreshold = 20;
-                if (randIntGen.Next(1, 10000)< spontaneousGenerationThreshold)
+                if (randIntGen.Next(1, PollutionDenom)< spontaneousGenerationThreshold)
                 {
                     return true;
                 }
@@ -35,7 +38,7 @@ namespace ConsoleLife
                 if (!IsAlive && neighbors == 3)
                 {
                     //POLLUTION EFFECT As pollution in cell rises, it will be less likely for a cell to "get born"
-                    if (randIntGen.Next(1, 10000) > Pollution)
+                    if (randIntGen.Next(1, PollutionDenom) > Pollution)
                     {
                         return true;
                     }
@@ -47,7 +50,7 @@ namespace ConsoleLife
                 else if (IsAlive && neighbors < 2)
                 {
                     //POLLUTION EFFECT As pollution in cell rises, it will be more likely for a cell to spontaneously die
-                    if (randIntGen.Next(1, 10000) > Pollution)
+                    if (randIntGen.Next(1, PollutionDenom) > Pollution)
                     {
                         return false;
                     }
@@ -59,7 +62,7 @@ namespace ConsoleLife
                 else if (IsAlive && neighbors > 3)
                 {
                     //POLLUTION EFFECT As pollution in cell rises, it will be less likely for a cell to "get born"
-                    if (randIntGen.Next(1, 10000) > Pollution)
+                    if (randIntGen.Next(1, PollutionDenom) > Pollution)
                     {
                         return false;
                     }

@@ -57,7 +57,7 @@ namespace ConsoleLife
             int fieldCount = field.Count;
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(3, RowEnd + 1);
-            Console.Write($"Generation:\tPopulation:\tAverage Pollution");
+            Console.Write($"Generation:\tPopulation:\tAve Pollution Per Cell\tAvg Pollution Effect Percentage");
             Console.ResetColor();
             while (generation <= Generations)
             {
@@ -70,15 +70,18 @@ namespace ConsoleLife
                         Console.SetCursorPosition(col, row);
                         if (field[listPosition].IsAlive)
                         {
+                            //Console.ForegroundColor = ConsoleColor.Blue;
                             Console.Write("█");
+                            //Console.ResetColor();
                             field[listPosition].Pollution += 5;    //Adds polution to each live cell
                             population++;
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Gray;
+                            //Console.ForegroundColor = ConsoleColor.Gray;
+                            //Console.BackgroundColor = ConsoleColor.DarkGreen;
                             Console.Write("░");
-                            Console.ResetColor();
+                            //Console.ResetColor();
                             if (field[listPosition].Pollution > 1)
                             {
                                 field[listPosition].Pollution -= 1;    //Removes polution to each vacant cell
@@ -107,6 +110,10 @@ namespace ConsoleLife
                 Console.Write("              ");
                 Console.SetCursorPosition(35, RowEnd + 2);
                 Console.Write(averageCellPollution);
+                Console.SetCursorPosition(60, RowEnd + 2);
+                Console.Write("       ");
+                Console.SetCursorPosition(60, RowEnd + 2);
+                Console.Write((averageCellPollution / field[0].PollutionDenom).ToString("P"));
                 Console.ResetColor();
 
                 averageCellPollution = 0;
