@@ -70,23 +70,34 @@ namespace ConsoleLife
                         neighbors = NeighborCount(listPosition, field);
                         field[listPosition].IsAlive = field[listPosition].GetLifeStatus(neighbors);
                         //DISPLAY Iteration formula: col + row-1*ColumnEnd -1 (to 0 index)
-                        if(prevAlive != field[listPosition].IsAlive)
+                        if(prevAlive == field[listPosition].IsAlive)
                         {
-                            Console.SetCursorPosition(col, row);
                             if (field[listPosition].IsAlive)
-                            {
-                                //Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.Write("█");
-                                //Console.ResetColor();
+                            {                          
                                 field[listPosition].Pollution += 5;    //Adds polution to each live cell
                                 population++;
                             }
                             else
                             {
-                                //Console.ForegroundColor = ConsoleColor.Gray;
-                                //Console.BackgroundColor = ConsoleColor.DarkGreen;
+                              
+                                if (field[listPosition].Pollution > 1)
+                                {
+                                    field[listPosition].Pollution -= 1;    //Removes polution to each vacant cell
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(col, row);
+                            if (field[listPosition].IsAlive)
+                            {
+                                Console.Write("█");
+                                field[listPosition].Pollution += 5;    //Adds polution to each live cell
+                                population++;
+                            }
+                            else
+                            {
                                 Console.Write("░");
-                                //Console.ResetColor();
                                 if (field[listPosition].Pollution > 1)
                                 {
                                     field[listPosition].Pollution -= 1;    //Removes polution to each vacant cell
