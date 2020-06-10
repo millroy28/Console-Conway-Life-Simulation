@@ -47,7 +47,8 @@ namespace ConsoleLife
         }
 
         public void DisplayAndCount(List<Cell> field)
-        {
+        {   
+            //Break this into easier to understand methods - it's too unwiedly now
             int generation = 0;
             int neighbors = 0;
             int listPosition = 0;
@@ -55,9 +56,22 @@ namespace ConsoleLife
             float pollutionTotal = 0;
             float averageCellPollution = 0;
             int fieldCount = field.Count;
+            int populationPeak = 0;
+            float averageCellPollutionPeak = 0;
+            int populationPeakGeneration = 0;
+            int averageCellPollutionPeakGeneration = 0;
+            int peakCounter = 0;
+            int populationDipPostPeak = 999999;
+            int populationDipPostPeakGeneration = 9999;
+            int previousPopPeak = 0;
+
+
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(3, RowEnd + 1);
             Console.Write($"Generation:\tPopulation:\tAve Pollution Per Cell\tAvg Pollution Effect Percentage");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.SetCursorPosition(3, RowEnd + 3);
+            Console.Write($"Max Population:  Max Pop Gen:  Max Avg Cell Pollution:  MACP Gen:   Pop Min Post Peak: PMPP Gen:");
             Console.ResetColor();
             while (generation <= Generations)
             {
@@ -128,6 +142,57 @@ namespace ConsoleLife
                 Console.Write("       ");
                 Console.SetCursorPosition(60, RowEnd + 2);
                 Console.Write((averageCellPollution / field[0].PollutionDenom).ToString("P"));
+                
+                if (population > populationPeak)
+                {
+                    populationPeak = population;
+                    populationPeakGeneration = generation;
+                }
+                if (averageCellPollution > averageCellPollutionPeak)
+                {
+                    averageCellPollutionPeak = averageCellPollution;
+                    averageCellPollutionPeakGeneration = generation;
+                }
+                
+                if (populationPeak != previousPopPeak)
+                {
+                    previousPopPeak = populationPeak;
+                    peakCounter = 0;
+                } else
+                {
+                    previousPopPeak = populationPeak;
+                    peakCounter++;
+                }
+
+                if (peakCounter > 500 && population < populationDipPostPeak && populationPeak > 500)
+                {
+                    populationDipPostPeak = population;
+                    populationDipPostPeakGeneration = generation;
+                }
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.SetCursorPosition(3, RowEnd + 4);
+                Console.Write(populationPeak);
+                Console.SetCursorPosition(20, RowEnd + 4);
+                Console.Write("         ");
+                Console.SetCursorPosition(20, RowEnd + 4);
+                Console.Write(populationPeakGeneration);
+                Console.SetCursorPosition(35, RowEnd + 4);
+                Console.Write("              ");
+                Console.SetCursorPosition(35, RowEnd + 4);
+                Console.Write((averageCellPollutionPeak / field[0].PollutionDenom).ToString("P"));
+                Console.SetCursorPosition(60, RowEnd + 4);
+                Console.Write("       ");
+                Console.SetCursorPosition(60, RowEnd + 4);
+                Console.Write(averageCellPollutionPeakGeneration);
+                Console.SetCursorPosition(73, RowEnd + 4);
+                Console.Write("       ");
+                Console.SetCursorPosition(73, RowEnd + 4);
+                Console.Write(populationDipPostPeak);
+                Console.SetCursorPosition(93, RowEnd + 4);
+                Console.Write("       ");
+                Console.SetCursorPosition(93, RowEnd + 4);
+                Console.Write(populationDipPostPeakGeneration);
                 Console.ResetColor();
 
                 averageCellPollution = 0;

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "fKnSnuHbUZMFbX1sxfg1dpW/pYixUwT8kugdkm5Bj6ca2YF3Wo0MY4tJmT4zGC61lbqt/6AQ6U+xWSBsPdjIFg==",
+  "dgSpecHash": "DSgW8BxLfFyVGHhoI3fHkaNZH+e2ig90J2SFoqYSw1w3tIevIuM4m/jxveJnZ0e252QUhGFMGHrDf8cwfi7Q4A==",
   "success": true,
   "projectFilePath": "C:\\Users\\millr\\source\\repos\\ConsoleLife\\ConsoleLife\\ConsoleLife.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\millr\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
   "logs": []
 }
